@@ -1,23 +1,34 @@
 <!-- declaration of navbar -->
 
+
+<style>
+
+a { text-decoration: none; color:white; }
+a:visited { text-decoration: none; }
+a:hover { text-decoration: none; }
+a:focus { text-decoration: none; }
+a:hover, a:active { text-decoration: none; }
+
+</style>
+
 <div>
 
     {% url 'about' as about_url %}
-    <p>{% if request.path == about_url %}about{% else %}<a href="{% url 'about' %}" style="text-decoration: none;">about</a>{% endif %}</p>
+    <p>{% if request.path == about_url %}about{% else %}<a href="{% url 'about' %}">about</a>{% endif %}</p>
     
     {% url 'index' as index_url %}
-    <p>{% if request.path == index_url %}posters{% else %}<a href="{% url 'index' %}" style="text-decoration: none;">posters</a>{% endif %}</p>
+    <p>{% if request.path == index_url %}posters{% else %}<a href="{% url 'index' %}">posters</a>{% endif %}</p>
 
     {% url 'movies' as movies_url %}
-    <p>{% if request.path == movies_url %}movies{% else %}<a href="{% url 'movies' %}" style="text-decoration: none;">movies</a>{% endif %}</p>
+    <p>{% if request.path == movies_url %}movies{% else %}<a href="{% url 'movies' %}">movies</a>{% endif %}</p>
     
     {% url 'plots' as plots_url %}
-    <p>{% if request.path == plots_url %}plots{% else %}<a href="{% url 'plots' %}" style="text-decoration: none;">plots</a>{% endif %}</p>
+    <p>{% if request.path == plots_url %}plots{% else %}<a href="{% url 'plots' %}">plots</a>{% endif %}</p>
     
     {% url 'random' as random_url %}
-    <p>{% if request.path == random_url %}randomiser{% else %}<a href="{% url 'random' %}" style="text-decoration: none;">randomiser</a>{% endif %}</p>
+    <p>{% if request.path == random_url %}randomiser{% else %}<a href="{% url 'random' %}">randomiser</a>{% endif %}</p>
     
     {% url 'contact' as contact_url %}
-    <p>{% if request.path == contact_url %}contact{% else %}<a href="{% url 'contact' %}" style="text-decoration: none;">contact</a>{% endif %}</p>
+    <p>{% if request.path == contact_url %}contact{% else %}<a href="{% url 'contact' %}">contact</a>{% endif %}</p>
     
 </div>
