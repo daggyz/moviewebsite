@@ -1,0 +1,439 @@
+<!-- import block of content from base.html -->
+
+{% extends 'base.html' %}
+{% block title %}plots{% endblock %}
+{% block content %}
+
+
+<!-- styling content with CSS -->
+<style>
+
+.all {
+    text-align:center;
+    margin-right:2%;
+    margin-left:2%;
+}
+
+</style>
+
+
+<!-- load result from java script function, print chars -->
+<body onload="postmessage();" >
+
+<div class="all">
+
+<canvas id="myChart1" height="150" responsive="false"></canvas>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<canvas id="myChart2" height="150" responsive="false"></canvas>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<canvas id="myChart3" height="150" responsive="false"></canvas>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<canvas id="myChart4" height="150" responsive="false"></canvas>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<canvas id="myChart5" height="150" responsive="false"></canvas>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<canvas id="myChart6" height="150" responsive="false"></canvas>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<canvas id="myChart7" height="150" responsive="false"></canvas>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<canvas id="myChart8" height="150" responsive="false"></canvas>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<canvas id="myChart9" height="150" responsive="false"></canvas>
+
+</div>
+
+</body>
+
+<!-- java script, part of styling charts, working with data from view plots (replace characters in string, creating tables)-->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script>
+
+function postmessage() {
+  var movies1 = '{{ plots }}';
+  
+  var movies2 = movies1.replace(new RegExp("&"+"#"+"x27;", "g"), "");
+  var movies3 = movies2.replaceAll("]], [[","|").replaceAll("]]]","").replaceAll("[[[","").replaceAll("], [", ", ");
+  var result = movies3.split("|");
+  
+  var res0 = result[0];  
+  var res1 = result[1];  
+  var res2 = result[2]; 
+  
+  var res0_split = res0.split(",");  
+  var res_0_split_title =  res0_split.slice(0,24);
+  var res_0_split_year =  res0_split.slice(24,48);
+  var res_0_split_ratings =  res0_split.slice(48,72);
+  var res_0_split_votes =  res0_split.slice(72,96);
+  var res_0_split_box =  res0_split.slice(96,120);
+  
+  var res1_split = res1.split(",");
+  var res_1_split_title =  res1_split.slice(0,38);
+  var res_1_split_year =  res1_split.slice(38,76);
+  var res_1_split_ratings =  res1_split.slice(76,114);
+  var res_1_split_votes =  res1_split.slice(114,152);
+  var res_1_split_box =  res1_split.slice(152,190);
+  
+  var res2_split = res2.split(",");
+  var res_2_split_title =  res2_split.slice(0,31);
+  var res_2_split_year =  res2_split.slice(31,62);
+  var res_2_split_ratings =  res2_split.slice(62,93);
+  var res_2_split_votes =  res2_split.slice(93,124);
+  var res_2_split_box =  res2_split.slice(124,155);
+
+//printing results//
+//document.getElementById("movie").textContent = res_0_split_ratings;//
+
+
+
+var length = res_0_split_ratings.length;
+
+var table_ratings_1 = [];
+var i;
+for (i = 0; i < length; i++) {
+  table_ratings_1[i] = parseFloat(res_0_split_ratings[i]);
+}
+
+var ctx = document.getElementById('myChart1').getContext('2d');
+
+var myChart1 = new Chart(ctx, {
+    type: 'bar',
+    data: {
+        labels: res_0_split_title,
+        datasets: [{
+            label: 'Imbd ratings',
+            data: table_ratings_1,
+            borderWidth: 1
+        }]
+    },
+    options: {
+        scales: {
+            y: {
+                max:10,
+                min:0,
+            }
+
+        }
+    }
+})
+
+
+
+
+var length = res_0_split_votes.length;
+
+var table_votes_1 = [];
+var i;
+for (i = 0; i < length; i++) {
+  table_votes_1[i] = parseFloat(res_0_split_votes[i]);
+}
+
+var ctx = document.getElementById('myChart2').getContext('2d');
+var myChart2 = new Chart(ctx, {
+    type: 'bar',
+    data: {
+        labels: res_0_split_title,
+        datasets: [{
+            label: 'Imdb votes',
+            data: table_votes_1,
+            borderWidth: 1
+        }]
+    },
+    options: {
+        scales: {
+            y: {
+                beginAtZero: true
+            }
+        }
+    }
+})
+
+
+
+var length = res_0_split_box.length;
+
+var table_box_1 = [];
+var i;
+for (i = 0; i < length; i++) {
+  table_box_1[i] = parseFloat(res_0_split_box[i]);
+}
+
+var ctx = document.getElementById('myChart3').getContext('2d');
+var myChart3 = new Chart(ctx, {
+    type: 'bar',
+    data: {
+        labels: res_0_split_title,
+        datasets: [{
+            label: 'Box office',
+            data: table_box_1,
+            borderWidth: 1
+        }]
+    },
+    options: {
+        scales: {
+            y: {
+                beginAtZero: true
+            }
+        }
+    }
+})
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+var length = res_1_split_ratings.length;
+
+var table_ratings_2 = [];
+var i;
+for (i = 0; i < length; i++) {
+  table_ratings_2[i] = parseFloat(res_1_split_ratings[i]);
+}
+
+var ctx = document.getElementById('myChart4').getContext('2d');
+var myChart4 = new Chart(ctx, {
+    type: 'bar',
+    data: {
+        labels: res_1_split_title,
+        datasets: [{
+            label: 'Imbd ratings',
+            data: table_ratings_2,
+            borderWidth: 1
+        }]
+    },
+    options: {
+        scales: {
+            y: {
+                max:10,
+                min:0
+            }
+        }
+    }
+})
+
+
+
+var length = res_1_split_votes.length;
+
+var table_votes_2 = [];
+var i;
+for (i = 0; i < length; i++) {
+  table_votes_2[i] = parseFloat(res_1_split_votes[i]);
+}
+
+var ctx = document.getElementById('myChart5').getContext('2d');
+var myChart5 = new Chart(ctx, {
+    type: 'bar',
+    data: {
+        labels: res_1_split_title,
+        datasets: [{
+            label: 'Imdb votes',
+            data: table_votes_2,
+            borderWidth: 1
+        }]
+    },
+    options: {
+        scales: {
+            y: {
+                beginAtZero: true
+            }
+        }
+    }
+})
+
+
+
+var length = res_1_split_box.length;
+
+var table_box_2 = [];
+var i;
+for (i = 0; i < length; i++) {
+  table_box_2[i] = parseFloat(res_1_split_box[i]);
+}
+
+var ctx = document.getElementById('myChart6').getContext('2d');
+var myChart6 = new Chart(ctx, {
+    type: 'bar',
+    data: {
+        labels: res_1_split_title,
+        datasets: [{
+            label: 'Box office',
+            data: table_box_2,
+            borderWidth: 1
+        }]
+    },
+    options: {
+        scales: {
+            y: {
+                beginAtZero: true
+            }
+        }
+    }
+})
+
+
+
+
+
+
+
+
+
+
+
+
+var length = res_2_split_ratings.length;
+
+var table_ratings_3 = [];
+var i;
+for (i = 0; i < length; i++) {
+  table_ratings_3[i] = parseFloat(res_2_split_ratings[i]);
+}
+
+var ctx = document.getElementById('myChart7').getContext('2d');
+var myChart7 = new Chart(ctx, {
+    type: 'bar',
+    data: {
+        labels: res_2_split_title,
+        datasets: [{
+            label: 'Imbd ratings',
+            data: table_ratings_3,
+            borderWidth: 1
+        }]
+    },
+    options: {
+        scales: {
+            y: {
+                max:10,
+                min:0
+            }
+        }
+    }
+})
+
+
+
+var length = res_2_split_votes.length;
+
+var table_votes_3 = [];
+var i;
+for (i = 0; i < length; i++) {
+  table_votes_3[i] = parseFloat(res_2_split_votes[i]);
+}
+
+var ctx = document.getElementById('myChart8').getContext('2d');
+var myChart8 = new Chart(ctx, {
+    type: 'bar',
+    data: {
+        labels: res_2_split_title,
+        datasets: [{
+            label: 'Imdb votes',
+            data: table_votes_3,
+            borderWidth: 1
+        }]
+    },
+    options: {
+        scales: {
+            y: {
+                beginAtZero: true
+            }
+        }
+    }
+})
+
+
+
+var length = res_2_split_box.length;
+
+var table_box_3 = [];
+var i;
+for (i = 0; i < length; i++) {
+  table_box_3[i] = parseFloat(res_2_split_box[i]);
+}
+
+var ctx = document.getElementById('myChart9').getContext('2d');
+var myChart9 = new Chart(ctx, {
+    type: 'bar',
+    data: {
+        labels: res_2_split_title,
+        datasets: [{
+            label: 'Box office',
+            data: table_box_3,
+            borderWidth: 1
+        }]
+    },
+    options: {
+        scales: {
+            y: {
+                beginAtZero: true
+            }
+        }
+    }
+})
+
+
+};
+
+
+
+</script>
+      
+
+
+
+
+
+{% endblock %}
+
+
+
+

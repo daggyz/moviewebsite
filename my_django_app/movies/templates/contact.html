@@ -1,0 +1,86 @@
+<!-- import block of content from base.html -->
+
+{% extends 'base.html' %}
+{% block title %}contact{% endblock %}
+{% block content %}
+
+
+<!-- styling content with CSS -->
+<style>
+
+.all {
+    text-align:center;
+}
+
+.fleft {
+    float:left; 
+    width: 50%;
+    height: 500px;
+}
+
+.fright {
+    float: right;
+    height: 500px;
+    width: 50%;
+}
+
+.fleftbc {
+    background:url(https://i.pinimg.com/originals/f4/37/7d/f4377d9b518446218745580d3c310561.png); 
+    border-radius: 25px;
+    color: white;
+    min-height: 370px;
+    margin-right:20%;
+    margin-left:20%;
+    text-align:left;
+    height:auto;
+}
+
+.fleftbc p {
+    margin-right:10%;
+    margin-left:10%;
+    font-size: 17px;
+    text-align:left;
+}
+
+</style>
+
+
+<!-- classes with content; contact with us -->
+
+<div class="all">
+
+<div class="fleft">
+
+<h2>Contact us</h2>
+
+<div class="fleftbc">
+<br>
+<p>Contact our friendly team about any issues with ‘Project Page.com’, digital queries, report infringements and provide feedback.
+<br>
+<br>
+Our e-mail: moviewebsite.2021@gmail.com.
+<br>
+<br>
+Please note that due to the current situation with COVID 19 it may take us a little longer than usual to respond. 
+</p>
+    
+</div>
+
+</div>
+
+
+<div class="fright">
+
+<div class="frightbc">
+
+<img src=https://cliply.co/wp-content/uploads/2019/03/371902260_SENDING_MAIL_400.gif>
+
+</div>
+
+</div>
+    
+</div>
+
+{% endblock %}
+
+

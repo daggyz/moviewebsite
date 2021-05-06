@@ -1,0 +1,106 @@
+<!-- import block of content from base.html -->
+
+{% extends 'base.html' %}
+{% block title %}movies{% endblock %}
+{% block content %}
+
+
+<!-- styling content with CSS -->
+<style>
+
+.all {
+    margin-left:1%;
+    margin-right:1%;
+    background-color: white;
+    font-size: 12px;
+    text-align:left;
+}
+
+</style>
+
+
+<!-- styling content import (href)-->
+<head>
+<meta charset="utf-8">
+<title>Bootstrap</title>
+<link rel="stylesheet" href="https://cdn.datatables.net/1.10.24/css/jquery.dataTables.min.css">
+</head>
+
+
+
+<!-- classes and loops (html) and script (java script) with datatable-->
+<div class="all">
+
+        <table id="example"  class="display compact" style="width: 100%">
+
+            <thead>
+                <tr>
+                <th>Title</th>
+                <th>Year</th>
+                <th>Runtime</th>
+                <th>Genre</th>
+                <th>Director</th>
+                <th>Actors</th>
+                <th>Country</th>
+                <th>Awards</th>
+                <th>IMDb ratings</th>
+                <th>IMDb votes</th>
+                <th>Box office</th>
+                </tr>
+            </thead>
+
+            <tbody>
+            {%for i in movies %}
+                <tr>
+                <td>{{i.title}}</td>
+                <td>{{i.year}}</td>
+                <td>{{i.runtime}}</td>
+                <td>{{i.genre}}</td>
+                <td>{{i.director}}</td>
+                <td>{{i.actors}}</td>
+                <td>{{i.country}}</td>
+                <td>{{i.awards}}</td>
+                <td>{{i.imdb_ratings}}</td>
+                <td>{{i.imdb_votes}}</td>
+                <td>{{i.box_office}}</td>          
+                </tr>
+            {% endfor %}
+        </tbody>
+
+        <tfoot>
+                <tr>
+                <th>Title</th>
+                <th>Year</th>
+                <th>Runtime</th>
+                <th>Genre</th>
+                <th>Director</th>
+                <th>Actors</th>
+                <th>Country</th>
+                <th>Awards</th>
+                <th>IMDb ratings</th>
+                <th>IMDb votes</th>
+                <th>Box office</th>
+                </tr>
+        </tfoot>
+
+        </table>
+
+<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
+<script src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js"></script>
+
+
+<!-- java script, part of styling data table-->
+<script>
+
+$(document).ready(function() {
+$('#example').DataTable();
+} );
+
+</script>
+
+</div>
+
+
+{% endblock %}
+

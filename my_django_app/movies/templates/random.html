@@ -1,0 +1,135 @@
+<!-- import block of content from base.html -->
+
+{% extends 'base.html' %}
+{% block title %}random{% endblock %}
+{% block content %}
+
+
+<!-- styling content with CSS -->
+<style>
+
+.all {
+    text-align:center;
+}
+
+.fleft {
+    float:left; 
+    width: 50%;
+    height: 500px;
+    text-align:center;
+    font-size: 25px;
+}
+
+.fright {
+    float: right;
+    height: 500px;
+    width: 50%;
+}
+
+.fleftbc {
+    background:url(https://i.pinimg.com/originals/f4/37/7d/f4377d9b518446218745580d3c310561.png); 
+    border-radius: 25px;
+    color: white;
+    min-height: 450px;
+    margin-right:10%;
+    margin-left:10%;
+    text-align:left;
+    height:auto;
+}
+
+.fleftbc p {
+    margin-right:10%;
+    margin-left:10%;
+    font-size: 17px;
+}
+
+.result {
+font-size: 80px;
+}
+
+</style>
+
+
+<!-- java script for picking ranom title from view random)-->
+<script>
+
+function postmessage() {
+  var movies1 = '{{ random }}';
+  var movies2 = movies1.split(',');
+  var movies3 = movies2[Math.floor(Math.random() * movies2.length)];
+
+  document.getElementById("movie").textContent = movies3;
+};
+
+</script>
+
+
+<!-- classes with content; randomiser, result of java script-->
+<div class="all">
+
+<br>
+<br>
+<br>
+
+<div class="result" id="movie">
+
+</div>
+
+</div>
+
+<br>
+<br>
+<br>
+<br>
+<div class="fleft">
+
+<h2>Randomiser</h2>
+
+<div class="fleftbc">
+
+<br>
+<p>Movies are hard to choose. 
+<br>
+If you're wondering what movie you should watch next, use our randomiser below. 
+<br>
+<br>
+A study launched by Netflix in 2016 found out that  ‘users spend 18 minutes picking something to watch’ before choosing. 
+That’s why a random movie generator is so handy. 
+<br>
+<br>It not only saves time and effort, but it also is a fun way of choosing movie to watch. All you'll have to do is lean back and enjoy the popcorn.</p>
+<p><a href="https://www.thewrap.com/netflix-users-browse-for-programming-twice-as-long-as-cable-viewers-study-says/">(reference)</a></p> 
+
+</div>   
+
+<div class="result" id="movie">
+
+</div>
+
+</div>
+
+<div class="fright">
+
+<div class="rand">
+<br>
+<br>
+<br>
+<br>
+<br>
+<input type="image" src="https://images.squarespace-cdn.com/content/v1/59738f1b579fb3d3def5277b/1567718852119-FDXCTM72OAEGLWZS6J86/ke17ZwdGBToddI8pDm48kIMoYcC2C4kHyVZX5LZfDH9Zw-zPPgdn4jUwVcJE1ZvWEtT5uBSRWt4vQZAgTJucoTqqXjS3CfNDSuuf31e0tVHhMpjKr23OGKrfsK6dSs8sYG4S2EZ6-Nt6gtUu8Un5uKQvevUbj177dmcMs1F0H-0/giphy-76.gif?format=1000w" onclick="postmessage();" >
+
+</div>
+
+</div>
+
+</div>
+
+{% endblock %}
+
+
+
+
+
+
+
+
+
