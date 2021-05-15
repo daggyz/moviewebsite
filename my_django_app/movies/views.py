@@ -11,8 +11,16 @@ import sqlite3
 con = sqlite3.connect('templ.db')
 cur = con.cursor()
 cur.execute("SELECT title FROM movies")
-titles = cur.fetchall()
 
+cur2 = con.cursor()
+cur2.execute("SELECT urls FROM movies")
+
+cur3 = con.cursor()
+cur3.execute("SELECT description FROM movies")
+
+titles = cur.fetchall()
+urls = cur2.fetchall()
+descriptions = cur3.fetchall()
 
 #declaration of the table of titles and filling it with data from the database
 strTitles = []
@@ -20,7 +28,7 @@ strTitles = []
 for elem in titles:
     strTitles.append(elem[0].strip())
     
-  
+
 #breaking the connection to the database
 con.commit()
 con.close()
@@ -143,6 +151,7 @@ result_table = getmovieinfo(tableoftitles)
 df = pd.DataFrame(np.array(result_table), columns = ['title','year','runtime','genre','director','actors','country','awards','imdb_ratings','imdb_votes','box_office'])
 
 
+
 #changing data types of elements in a data frame df
 df['year'] = df['year'].astype(int)
 df['runtime'] = df['runtime'].astype(int)
@@ -239,6 +248,39 @@ dataHTMLready.append(tableHTML2)
 dataHTMLready.append(tableHTML3)
 
 
+#creating a data frames with titles, descriptions and urls
+def convertTuple(tup):
+    str =  ''.join(tup)
+    return str
+
+ulrs_changed=[]
+for elem in urls:
+    url_str = convertTuple(elem)
+    ulrs_changed.append(url_str)
+    
+descriptions_changed=[]
+for elem1 in descriptions:
+    description_str = convertTuple(elem1)
+    descriptions_changed.append(description_str)
+    
+   
+arr1 = np.array(strTitles)
+arr2 = np.array(ulrs_changed)
+arr3 = np.array(descriptions_changed)
+
+df_from_arr_1 = pd.DataFrame(np.hstack((arr1[:,None], arr3[:,None])), columns=['title', 'description'])
+
+df_from_arr_2 = pd.DataFrame(np.hstack((arr2[:,None])), columns=['url'])
+
+df_from_arr_3 = df_from_arr_1[['title', 'description']].agg('\n'.join, axis=1)
+
+df_from_arr_4 = pd.concat([df_from_arr_2, df_from_arr_3], axis=1)
+
+
+
+
+
+
 
 
 
@@ -247,7 +289,12 @@ dataHTMLready.append(tableHTML3)
 
 #django views
 def index(request):
-    return render(request, 'index.html')
+    alldata_1=[]
+    for i in range(df_from_arr_4.shape[0]):
+        temp_1=df_from_arr_4.iloc[i]
+        alldata_1.append(dict(temp_1))
+    my_context1={'index':alldata_1}
+    return render(request, 'index.html', my_context1)
 
 
 def about(request):

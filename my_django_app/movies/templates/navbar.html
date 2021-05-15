@@ -22,8 +22,8 @@ a:hover, a:active { text-decoration: none; }
     {% url 'movies' as movies_url %}
     <p>{% if request.path == movies_url %}movies{% else %}<a href="{% url 'movies' %}">movies</a>{% endif %}</p>
     
-    {% url 'plots' as plots_url %}
-    <p>{% if request.path == plots_url %}plots{% else %}<a href="{% url 'plots' %}">plots</a>{% endif %}</p>
+    {% url 'diagrams' as plots_url %}
+    <p>{% if request.path == plots_url %}plots{% else %}<a href="{% url 'plots' %}">diagrams</a>{% endif %}</p>
     
     {% url 'random' as random_url %}
     <p>{% if request.path == random_url %}randomiser{% else %}<a href="{% url 'random' %}">randomiser</a>{% endif %}</p>
