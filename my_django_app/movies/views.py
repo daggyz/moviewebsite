@@ -248,7 +248,7 @@ dataHTMLready.append(tableHTML2)
 dataHTMLready.append(tableHTML3)
 
 
-#creating a data frames with titles, descriptions and urls
+#converting element in array from tuple to string
 def convertTuple(tup):
     str =  ''.join(tup)
     return str
@@ -263,7 +263,7 @@ for elem1 in descriptions:
     description_str = convertTuple(elem1)
     descriptions_changed.append(description_str)
     
-   
+#creating a data frames with titles, descriptions and urls   
 arr1 = np.array(strTitles)
 arr2 = np.array(ulrs_changed)
 arr3 = np.array(descriptions_changed)
